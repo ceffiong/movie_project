@@ -1,4 +1,14 @@
 <script>document.getElementById("ccright").innerHTML = "Copyright &copy; " + new Date().getFullYear() + " - Charles - All Rights Reserved";
+    //display confirmation when the trash icon is clicked
+    const display_del_option = (id) => {
+        document.getElementById("div-confirm-del-" + id).style.display = "block"
+    }
+    //clock confirmation when the no button is clicked
+    const close_del_option = (id) => {
+        document.getElementById("div-confirm-del-" + id).style.display = "none"
+    }
+
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
