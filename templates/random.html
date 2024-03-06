@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie project</title>
+    {% include 'partials/links.html' %}
+</head>
+
+<body>
+    {% include 'partials/header.html' %}
+    <section class="container mt-5 mb-5">
+        <h1 class="mb-5">{{title}} 🎬</h1>
+
+
+        <div class="card">
+            <img src="{{ movie['image'] }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ movie['title'] }}</h5>
+                <p>
+                    <!--Checked stars-->
+                    {% for i in range(movie['rating']) %}
+                    <span class="fa fa-star checked"></span>
+                    {% endfor %}
+                    <!--Unchched stars-->
+                    {% for i in range(5 - movie['rating']) %}
+                    <span class="fa fa-star"></span>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+
+
+    </section>
+
+    {% include 'partials/footer.html' %}
+    <script>
+        document.getElementById("ccright").innerHTML = "Copyright &copy; " + new Date().getFullYear() + " - Charles - All Rights Reserved";
+    </script>
+    {% include 'partials/scripts.html' %}
+</body>
+
+</html>

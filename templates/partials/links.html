@@ -1,0 +1,64 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .checked {
+        color: orange;
+    }
+
+    .fa-btn {
+        color: #50979c;
+        font-size: 24px;
+    }
+
+    .fa-btn-red {
+        color: #dc3545;
+        font-size: 24px;
+        margin-left: 10px;
+    }
+
+
+
+    #movies-card>.card {
+        margin-bottom: 40px;
+    }
+
+    /* X-Small devices (portrait phones, less than 576px) */
+    @media (min-width: 576px) {
+        #movies-card {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    /*  Small devices (landscape phones, less than 768px) */
+    @media (min-width: 768px) {
+        #movies-card {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 40px
+        }
+
+        #movies-card>.card {
+            margin-bottom: 0px;
+        }
+    }
+
+    /*  Medium devices (tablets, less than 992px) */
+    @media (min-width: 992px) {
+        #movies-card {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 40px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        #movies-card {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 40px;
+        }
+    }
+</style>

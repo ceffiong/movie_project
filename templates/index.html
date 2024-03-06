@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie project</title>
+    {% include 'partials/links.html' %}
+</head>
+
+<body>
+    {% include 'partials/header.html' %}
+    <section class="container mt-5">
+
+        <section><img src="https://cdn.pixabay.com/photo/2018/10/26/11/14/man-3774381_1280.jpg" class="img-fluid"
+                alt="Header banner image"></section>
+        <section class="mt-5">
+            <h1>Featured movies 🎬</h1>
+            <p>"Discover captivating stories and cinematic marvels in our Feature Movies collection. From timeless
+                classics to thrilling blockbusters,
+                immerse yourself in unforgettable tales that promise to enchant and entertain. Explore our curated
+                selection for an extraordinary movie experience."
+            </p>
+            <div class="mt-5 splide" aria-label="Splide Basic HTML Example">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        {% for movie in movies %}
+                        <li class="splide__slide">
+                            <div class="card"><img src="{{ movie['image']}}" class="card-img-top" alt="Movie picture">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ movie['title'] }}</h5>
+                                    <p>
+                                        <!--Checked stars-->
+                                        {% for i in range(movie['rating']) %}
+                                        <span class="fa fa-star checked"></span>
+                                        {% endfor %}
+                                        <!--Unchched stars-->
+                                        {% for i in range(5 - movie['rating']) %}
+                                        <span class="fa fa-star"></span>
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
+    {% include 'partials/footer.html' %}
+    {% include 'partials/scripts.html' %}
+    <script>
+        new Splide('.splide', {
+            type: 'loop',
+            perPage: 4,
+            perMove: 1,
+            autoplay: true,
+            gap: 20,
+            breakpoints: {
+                576: {
+                    perPage: 1,
+                },
+                768: {
+                    perPage: 2,
+                },
+                992: {
+                    perPage: 3,
+                },
+                1200: {
+                    perPage: 4,
+                }
+            }
+
+        }).mount();
+    </script>
+</body>
+
+</html>

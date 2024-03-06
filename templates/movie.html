@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie project</title>
+    {% include 'partials/links.html' %}
+</head>
+
+<body>
+    {% include 'partials/header.html' %}
+    <section class="container mt-5">
+        <h1 class="mb-4">Movies
+            {% if sort_desc %}
+            <span class="fa fa-sort-amount-desc"></span>
+
+            {% else %}
+            <span class="fa fa-caret-square-o-right"></span>
+            {% endif %}
+        </h1>
+        {% if movie %}
+        <h3 class="mb-4 text-secondary">Update movie</h3>
+        <form action="/movies/edit/{{movie['id']}}" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Movie title</label>
+                <input type="text" class="form-control" name="title" aria-describedby="titleHelp"
+                    value="{{movie['title']}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image url</label>
+                <input type="text" class="form-control" name="image" aria-describedby="imageHelp"
+                    value="{{movie['image']}}">
+                <div id="imageHelp" class="form-text">Get an image url from the internet</div>
+            </div>
+
+            <select class="form-select" aria-label="Select" name="rating">
+                <!--<option selected>Rating</option> -->
+                {% for i in range(1, 6) %}
+                {% if i == movie['rating'] %}:
+                <option selected value="{{i}}">{{i}}</option>
+                {% else %}
+                <option value="{{i}}">{{i}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <!--<a class="btn btn-secondary" href="#" role="button">Update</a> -->
+            <button type="submit" class="btn btn-secondary mt-4">Update</button>
+        </form>
+
+        {% endif %}
+
+
+        {% if add_form %}
+        <h3 class="mb-4 text-secondary">Add a new movie</h3>
+        <form action="/movies/add" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Movie title</label>
+                <input type="text" class="form-control" name="title" aria-describedby="titleHelp" value="">
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Image url</label>
+                <input type="text" class="form-control" name="image" aria-describedby="imageHelp" value="">
+                <div id="imageHelp" class="form-text">Get an image url from the internet</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <select class="form-select" aria-label="Select" name="rating" id="rating">
+                    <option selected value="1">1</option>
+                    {% for i in range(2, 6) %}
+                    <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-secondary mt-4">Add</button>
+        </form>
+        {% endif %}
+
+    </section>
+    <section class="container mt-5 mb-5">
+
+        <div id="movies-card">
+            {% for movie in movies %}
+            <div class="card">
+                <img src="{{ movie['image'] }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie['title'] }}</h5>
+                    <p>
+                        <!--Checked stars-->
+                        {% for i in range(movie['rating']) %}
+                        <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                        <!--Unchched stars-->
+                        {% for i in range(5 - movie['rating']) %}
+                        <span class="fa fa-star"></span>
+                        {% endfor %}
+                    </p>
+                    <div class="mt-4">
+                        <a href="/movies/edit/{{movie['id']}}"><i class="fa fa-edit fa-btn"></i></a>
+                        <a href="/movies/delete/{{movie['id']}}"><i class="fa fa-trash fa-btn-red"></i></a>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </section>
+
+
+    {% include 'partials/footer.html' %}
+
+    {% include 'partials/scripts.html' %}
+
+
+</body>
+
+</html>

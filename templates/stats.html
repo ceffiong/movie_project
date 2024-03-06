@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie project</title>
+    {% include 'partials/links.html' %}
+</head>
+
+<body>
+    {% include 'partials/header.html' %}
+    <section class="container mt-5">
+        <h1>Statistics <span class="fa fa-bar-chart"></span></h1>
+    </section>
+    <section class="container mt-5 mb-5">
+        <div class="mb-5">
+
+
+            <button type="button" class="btn btn-info">
+                Average rating <span class="badge text-bg-secondary"> {{ average_rating }}</span>
+            </button>
+
+            <button type="button" class="btn btn-info">
+                Median rating <span class="badge text-bg-secondary"> {{ median_rating }}</span>
+            </button>
+        </div>
+
+        <div id="movies-card">
+            <div class="card">
+                <img src="{{ best_movie['image'] }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">{{ best_movie['title'] }} <span style="font-size: larger; color:green"
+                            class="fa fa-thumbs-up"></span></h3>
+                    <p>
+                        <!--Checked stars-->
+                        {% for i in range(best_movie['rating']) %}
+                        <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                        <!--Unchched stars-->
+                        {% for i in range(5 - best_movie['rating']) %}
+                        <span class="fa fa-star"></span>
+                        {% endfor %}
+                    </p>
+                    <p><button type="button" class="btn btn-outline-success">Best movie</button></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="{{ worst_movie['image'] }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">{{ worst_movie['title'] }} <span style="color:red"
+                            class="fa fa-thumbs-down"></span></h3>
+                    <p>
+                        <!--Checked stars-->
+                        {% for i in range(worst_movie['rating']) %}
+                        <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                        <!--Unchched stars-->
+                        {% for i in range(5 - worst_movie['rating']) %}
+                        <span class="fa fa-star"></span>
+                        {% endfor %}
+                    </p>
+                    <p><button type="button" class="btn btn-outline-danger">Worst movie </button></p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {% include 'partials/footer.html' %}
+
+    {% include 'partials/scripts.html' %}
+
+
+</body>
+
+</html>
